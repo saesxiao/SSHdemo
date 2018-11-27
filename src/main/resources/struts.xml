@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <!-- 默认访问页面 -->
+    <package name="default" extends="struts-default" namespace="/">
+        <default-action-ref name="default" />
+        <action name="default">
+            <result>/index.jsp</result>
+        </action>
+    </package>
+
+    <!--   -->
+    <package name="emps" extends="struts-default" namespace="/"
+        strict-method-invocation="false">
+        <!--   -->
+        <action name="list" class="com.ssh.action.EmpAction" method="getEmpList">
+            <result name="EmpList">/list.jsp</result>
+            <result name="error">/erro.jsp</result>
+        </action>
+        <action name="addPage" class="com.ssh.action.EmpAction" method="toAddPage">
+            <result name="addPage">/addemp.jsp</result>
+            <result name="error">/erro.jsp</result>
+        </action>
+        <action name="add" class="com.ssh.action.EmpAction" method="saveEmp">
+        	<!-- Action 跳转请求 Action -->
+            <result name="addEmp" type="chain">list</result>
+            <result name="error">/erro.jsp</result>
+        </action>
+        <action name="uptPage" class="com.ssh.action.EmpAction" method="toUptPage">
+            <result name="uptPage">/uptemp.jsp</result>
+            <result name="error">/erro.jsp</result>
+        </action>
+        <action name="upt" class="com.ssh.action.EmpAction" method="updateEmp">
+            <result name="uptEmp" type="chain">list</result>
+            <result name="error">/erro.jsp</result>
+        </action>
+        <action name="del" class="com.ssh.action.EmpAction" method="deleteEmp">
+            <result name="delEmp" type="chain">list</result>
+            <result name="error">/erro.jsp</result>
+        </action>
+    </package>
+
+    <!-- 引入资源文件 
+    <constant name="struts.custom.i18n.resources" value="messageResource"></constant>-->
+
+</struts>
