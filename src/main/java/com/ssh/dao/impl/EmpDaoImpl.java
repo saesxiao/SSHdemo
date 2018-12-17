@@ -18,6 +18,7 @@ public class EmpDaoImpl implements EmpDao {
 
 	private HibernateTemplate template;
 	
+	@SuppressWarnings("unused")
 	private Session session;
 		
 	@Autowired
@@ -26,6 +27,7 @@ public class EmpDaoImpl implements EmpDao {
         session = sessionFactory.openSession();
     }
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Emp> getEmpList() {
 		List<Emp> list= new ArrayList<>();

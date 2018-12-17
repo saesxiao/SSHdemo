@@ -2,8 +2,6 @@ package com.ssh.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import com.ssh.entity.Emp;
 
 public interface EmpDao {
