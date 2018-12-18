@@ -2,7 +2,6 @@ package com.ssh.service;
 
 import java.util.List;
 
-
 import com.ssh.entity.Emp;
 
 public interface EmpService {

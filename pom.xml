@@ -13,6 +13,7 @@
     <struts.version>2.5.10</struts.version>
     <spring.version>4.3.8.RELEASE</spring.version>
     <hibernate.version>5.1.7.Final</hibernate.version>
+    <slf4j.version>1.7.22</slf4j.version>
 	</properties>
 	<dependencies>
 	    <!-- Junit依赖 -->
@@ -40,6 +41,14 @@
 	        <artifactId>spring-orm</artifactId>
 	        <version>${spring.version}</version>
 	    </dependency>
+	    
+	    <!-- spring mvc -->
+	    <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+	    
 	    <!-- Struts2 核心依赖 -->
 	    <dependency>
 	        <groupId>org.apache.struts</groupId>
@@ -76,18 +85,31 @@
 	        <artifactId>aspectjweaver</artifactId>
 	        <version>1.8.10</version>
 	    </dependency>
-	    <!-- SLF4J依赖 -->
-	    <dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-core</artifactId>
-		    <version>2.10.0</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-api</artifactId>
-		    <version>2.10.0</version>
-		</dependency>
+	    
+ 		<!-- LOGGING begin -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- common-logging 实际调用slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- java.util.logging 实际调用slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- LOGGING end -->
 
 	     <!-- 导入java ee jar 包 -->  
 	    <dependency>  

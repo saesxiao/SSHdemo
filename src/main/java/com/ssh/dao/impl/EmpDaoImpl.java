@@ -3,6 +3,7 @@ package com.ssh.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ public class EmpDaoImpl implements EmpDao {
 
 	private HibernateTemplate template;
 	
-	@SuppressWarnings("unused")
 	private Session session;
 		
 	@Autowired
@@ -27,23 +27,30 @@ public class EmpDaoImpl implements EmpDao {
         session = sessionFactory.openSession();
     }
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Emp> getEmpList() {
-		List<Emp> list= new ArrayList<>();
 		try {
-			list = (List<Emp>) template.find("from Emp");
+			Query query =session.createQuery("from Emp");
+			List<Emp> list = query.list();
+			return list;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ArrayList<Emp>();
 		}
-		return list;
+		
 	}
 
 	@Override
 	public Emp getEmpById(int id) {
 		Emp emp = new Emp();
 		try {
-			emp = template.get(Emp.class, id);
+			Query query =session.createQuery("from Emp where id=?");
+			query.setParameter(0, id);
+			List<Emp> list = query.list();
+			if(list!=null){
+				if(list.size()>0){
+					return list.get(0);
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
